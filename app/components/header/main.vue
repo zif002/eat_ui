@@ -1,7 +1,17 @@
 <template>
        <div class="container-menu">
-          <NavHeader/>
-          {{$t("welcome")}}
+            <div> 
+              <NavHeader/>
+            </div>
+          
+
+          <div class="container-logo">
+          <NuxtLink class="logo" :to="$localePath('/')">
+            <NuxtImg src="/images/vkusno_i_nedorogo.jpg" width="64"/> 
+          </NuxtLink>
+          </div>
+
+          
            <NavAuth/>
        </div>
 </template>
@@ -12,7 +22,11 @@
 
 <style>
   .container-menu {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+     align-items: center;
+  }
+  .container-logo {
+    text-align: center;
   }
 </style>

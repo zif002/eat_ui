@@ -1,4 +1,5 @@
 <template>
+  <div>
   <Menubar :model="items" class="p-menubar">
       <template #item="{ item }">
          <Button
@@ -10,6 +11,7 @@
       </template>
      
   </Menubar>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -36,5 +38,7 @@
 <style>
   .p-menubar{
     padding: 0;
+    justify-self: start
+    
   }
 </style>
