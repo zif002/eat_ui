@@ -1,0 +1,18 @@
+{
+    "welcome": "welcome",
+    "language": {
+        "tooltip": "Switch to Russian"
+    },
+    "menu": {
+        "month": "Menu calendar",
+        "today": "Menu Today"
+    },
+    "nav": {
+        "auth": {
+            "signout": "Sign out",
+            "profile": "Profile",
+            "signin": "Sign in",
+            "signup": "Registration"
+        }
+    }
+}
