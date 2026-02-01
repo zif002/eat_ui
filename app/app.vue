@@ -7,5 +7,5 @@
   </div>
 </template>
 <script setup lang="ts">
-import '~/assets/main.css'
+  import '~/assets/main.css'
 </script>

@@ -9,10 +9,7 @@
       <template #end>
           <Button v-if="locale === 'ru'" v-tooltip="t('language.tooltip')" variant="link" @click.prevent.stop="changeLanguage('en')">🇬🇧</Button>
           <Button v-if="locale === 'en'" v-tooltip="t('language.tooltip')"  variant="link" @click.prevent.stop="changeLanguage('ru')">🇷🇺</Button>
-          <Button
-v-tooltip="{
-            value: isDark ? 'Light theme' : 'Dark theme'
-          }"  icon="pi pi-palette" :severity="isDark ? '' : 'info'" @click="toggleTheme()"/>
+          <Button v-tooltip="{ value: isDark ? 'Light theme' : 'Dark theme' }" icon="pi pi-palette" :severity="isDark ? '' : 'info'" @click="toggleTheme()"/>
       </template>
   </Menubar>
 </template>
@@ -23,9 +20,28 @@ v-tooltip="{
   const switchLocalePath = useSwitchLocalePath();
   const { locale, t } = useI18n()
   const router = useRouter();
-  const isDark = ref();
+  const isDark = ref(false);
   onMounted(() => {
-    isDark.value = document.documentElement.classList.contains('my-app-dark');
+    const theme = localStorage.getItem('theme');
+    if(theme) {
+        isDark.value = theme === "dark";
+        if(theme === "dark") {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    } else {
+        const darkModeMql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+         if(darkModeMql) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        isDark.value = !!darkModeMql;
+        localStorage.setItem('theme', darkModeMql ? "dark" : "light");
+    }
+    
+
   })
   const changeLanguage = async (code: "en" | "ru") => {
    const path = switchLocalePath(code);
@@ -61,7 +77,10 @@ v-tooltip="{
     },
 ]);
 const toggleTheme = () => {
-    document.documentElement.classList.toggle('my-app-dark');
+    const isDarkClass = !document.documentElement.classList.contains('dark');
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDarkClass ? "dark" : "light");
+    isDark.value = isDarkClass
 }
 </script>
 
