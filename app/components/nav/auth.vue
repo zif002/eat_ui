@@ -1,8 +1,8 @@
 <template>
  <Menubar :model="items"  class="p-menubar-auth">
       <template #item="{ item }">
-          <Button :to="item.route" variant="link">
-            {{item.label}}
+          <Button asChild >
+            <NuxtLink :to="$localePath(item.route)">{{item.label}}</NuxtLink>
           </Button>
     
       </template>     
@@ -70,9 +70,7 @@
     {
         label: t("nav.auth.profile"),
         icon: 'pi-user',
-        command: () => {
-          
-        }
+        route: '/profile',
 
     },
 ]);

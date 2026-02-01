@@ -14,5 +14,10 @@
             "signin": "Sign in",
             "signup": "Registration"
         }
+    },
+    "forms": {
+        "username_placeholder": "Email",
+        "password_placeholder": "Password" ,
+        "enter": "Enter"
     }
 }
